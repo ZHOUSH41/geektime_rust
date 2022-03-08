@@ -30,12 +30,24 @@ pub fn format(input: &mut String, formatters: Vec<&dyn Formatter>) {
     }
 }
 
+pub fn format1(input: &mut String, formatters: Vec<Box<dyn Formatter>>) {
+    for formatter in formatters {
+        (*formatter).format(input);
+    }
+}
+
 fn main() {
     let mut text = "Hello world".to_string();
     let html: &dyn Formatter = &HtmlFormatter;
     let rust: &dyn Formatter = &RustFormatter;
     let formatters = vec![html, rust];
     format(&mut text, formatters);
-
     println!("text: {}", text);
+    let mut text1 = "Hello world".to_string();
+    let html1: Box<dyn Formatter> = Box::new(HtmlFormatter);
+    let rust1: Box<dyn Formatter> = Box::new(RustFormatter);
+    let formatters1 = vec![html1, rust1];
+    format1(&mut text1, formatters1);
+
+    println!("text1: {}", text1);
 }
