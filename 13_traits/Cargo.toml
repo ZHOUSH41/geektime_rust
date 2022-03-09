@@ -31,5 +31,9 @@ path = "src/animal.rs"
 [[bin]]
 name = "formatter"
 path = "src/formatter.rs"
+
+[[bin]]
+name = "trait_object_internal"
+path = "src/trait_object_internal.rs"
 [dependencies]
 regex = "1.5"
