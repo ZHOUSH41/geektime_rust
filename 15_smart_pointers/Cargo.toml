@@ -1,14 +1,8 @@
 [package]
-name = "sys_traits"
+name = "smart_pointers"
 version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[[bin]]
-name = "copy_drop"
-path = "src/copy_drop.rs"
-[[bin]]
-name = "send_sync"
-path = "src/send_sync.rs"
 [dependencies]

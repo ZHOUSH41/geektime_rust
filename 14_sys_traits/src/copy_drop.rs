@@ -21,13 +21,13 @@ impl From<Vec<u8>> for RawBuffer {
 // 如果不实现 Drop，那么就会导致内存泄漏，但它不会对正确性有任何破坏
 // 比如不会出现 use after free 这样的问题。
 // 你可以试着把下面注释去掉，看看会出什么问题
-impl Drop for RawBuffer {
-    #[inline]
-    fn drop(&mut self) {
-        let data = unsafe { Box::from_raw(slice::from_raw_parts_mut(self.ptr, self.len)) };
-        drop(data)
-    }
-}
+// impl Drop for RawBuffer {
+//     #[inline]
+//     fn drop(&mut self) {
+//         let data = unsafe { Box::from_raw(slice::from_raw_parts_mut(self.ptr, self.len)) };
+//         drop(data)
+//     }
+// }
 
 impl fmt::Debug for RawBuffer {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
