@@ -1,5 +1,4 @@
 use sqlparser::{dialect::GenericDialect, parser::Parser};
-
 fn main() {
     tracing_subscriber::fmt::init();
     let sql = "SELECT a a1,b, 123, myfunc(b), * \
