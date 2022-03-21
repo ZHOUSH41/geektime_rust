@@ -1,7 +1,8 @@
 use std::{fmt, slice};
-
+// 注意这里，我们实现了 Copy，这是因为 *mut u8/usize 都支持 Copy
 #[derive(Clone, Copy)]
 struct RawBuffer {
+    // 裸指针用 *const / *mut 来表述，这和引用的 & 不同
     ptr: *mut u8,
     len: usize,
 }
@@ -11,6 +12,7 @@ impl From<Vec<u8>> for RawBuffer {
         let slice = vec.into_boxed_slice();
         Self {
             len: slice.len(),
+            // into_raw 之后，Box 就不管这块内存的释放了，RawBuffer 需要处理释放
             ptr: Box::into_raw(slice) as *mut u8,
         }
     }
