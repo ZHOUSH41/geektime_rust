@@ -8,4 +8,12 @@ edition = "2021"
 [[bin]]
 name = "slice1"
 path = "src/slice1.rs"
+
+[[bin]]
+name = "slice2"
+path = "src/slice2.rs"
+
+[[bin]]
+name = "boxed"
+path = "src/boxed.rs"
 [dependencies]

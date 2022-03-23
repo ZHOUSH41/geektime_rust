@@ -20,9 +20,9 @@ path = "src/cow1.rs"
 name = "cow2"
 path = "src/cow2.rs"
 
-# [[bin]]
-# name = "guard"
-# path = "src/guard.rs"
+[[bin]]
+name = "guard"
+path = "src/guard.rs"
 
 # [[bin]]
 # name = "guard1"
