@@ -11,4 +11,14 @@ path = "src/hashmap1.rs"
 [[bin]]
 name = "hashmap2"
 path = "src/hashmap2.rs"
+[[bin]]
+name = "hashmap3"
+path = "src/hashmap3.rs"
+[[bin]]
+name = "hash"
+path = "src/hash.rs"
+[[bin]]
+name = "btree"
+path = "src/btree.rs"
+
 [dependencies]
