@@ -4,14 +4,14 @@ pub use memory::MemTable;
 /// 对存储的抽象，我们不关心数据存在哪儿，但需要定义外界如何和存储打交道
 pub trait Storage {
     /// 从一个 HashTable 里获取一个 key 的 value
-    fn get(&self, table: &str, key: &str) -> Result<Option<String>, KvError>;
+    fn get(&self, table: &str, key: &str) -> Result<Option<Value>, KvError>;
     /// 从一个 HashTable 里设置一个 key 的 value，返回旧的 value
-    fn set(&mut self, key: &str, value: &str);
+    fn set(&self, table: &str, key: String, value: Value) -> Result<Option<Value>, KvError>;
     /// 查看 HashTable 中是否有 key
     fn contains(&self, table: &str, key: &str) -> Result<bool, KvError>;
-    /// 从一个 HashTable 里删除一个 key，返回旧的 value
-    fn del(&mut self, table: &str, key: &str) -> Result<Option<Value>, KvError>;
-    /// 遍历 HashTable，返回所有 kv pair（这个接口不好
+    /// 从 HashTable 中删除一个 key
+    fn del(&self, table: &str, key: &str) -> Result<Option<Value>, KvError>;
+    /// 遍历 HashTable，返回所有 kv pair（这个接口不好）
     fn get_all(&self, table: &str) -> Result<Vec<Kvpair>, KvError>;
     /// 遍历 HashTable，返回 kv pair 的 Iterator
     fn get_iter(&self, table: &str) -> Result<Box<dyn Iterator<Item = Kvpair>>, KvError>;
@@ -77,17 +77,17 @@ mod tests {
         )
     }
 
-    fn test_get_iter(store: impl Storage) {
-        store.set("t2", "k1".into(), "v1".into()).unwrap();
-        store.set("t2", "k2".into(), "v2".into()).unwrap();
-        let mut data: Vec<_> = store.get_iter("t2").unwrap().collect();
-        data.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        assert_eq!(
-            data,
-            vec![
-                Kvpair::new("k1", "v1".into()),
-                Kvpair::new("k2", "v2".into())
-            ]
-        )
-    }
+    // fn test_get_iter(store: impl Storage) {
+    //     store.set("t2", "k1".into(), "v1".into()).unwrap();
+    //     store.set("t2", "k2".into(), "v2".into()).unwrap();
+    //     let mut data: Vec<_> = store.get_iter("t2").unwrap().collect();
+    //     data.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    //     assert_eq!(
+    //         data,
+    //         vec![
+    //             Kvpair::new("k1", "v1".into()),
+    //             Kvpair::new("k2", "v2".into())
+    //         ]
+    //     )
+    // }
 }
