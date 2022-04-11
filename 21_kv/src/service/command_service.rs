@@ -35,7 +35,6 @@ impl CommandService for Hset {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::command_request::RequestData;
 
     #[test]
     fn hset_should_work() {
