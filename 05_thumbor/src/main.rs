@@ -1,3 +1,4 @@
+// rewrite Thumbor to use rust
 use anyhow::Result;
 use axum::{
     extract::{Extension, Path},
