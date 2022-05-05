@@ -30,10 +30,11 @@ impl<'a> Fetch for UrlFetcher<'a> {
     }
 }
 
+#[async_trait]
 impl<'a> Fetch for FileFetcher<'a> {
     type Error = anyhow::Error;
 
     async fn fetch(&self) -> Result<String, Self::Error> {
         Ok(fs::read_to_string(&self.0[7..]).await?)
     }
-}
+} 
