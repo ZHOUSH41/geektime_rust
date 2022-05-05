@@ -5,7 +5,7 @@ pub use abi::*;
 use photon_rs::transform::SamplingFilter;
 use prost::Message;
 
-use self::resize::SampleFilter;
+// use self::resize::SampleFilter;
 
 impl ImageSpec {
     pub fn new(specs: Vec<Spec>) -> Self {
