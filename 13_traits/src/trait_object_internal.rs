@@ -1,6 +1,5 @@
 use std::fmt::{Debug, Display};
 use std::mem::transmute;
-
 fn main() {
     let s = String::from("hello world!");
     let s1 = String::from("goodbye world!");
