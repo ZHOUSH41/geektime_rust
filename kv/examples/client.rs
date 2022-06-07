@@ -6,15 +6,15 @@ use tokio::net::TcpStream;
 use tracing::info;
 
 #[tokio::main]
-async fn main() -> Result<()>{
+async fn main() -> Result<()> {
     tracing_subscriber::fmt::init();
 
     let addr = "127.0.0.1:9527";
 
     let stream = TcpStream::connect(addr).await?;
 
-    let mut client = 
-    AsyncProstStream::<_, CommandResponse, CommandRequest, _>::from(stream).for_async();
+    let mut client =
+        AsyncProstStream::<_, CommandResponse, CommandRequest, _>::from(stream).for_async();
 
     // 生成一个HSET
     let cmd = CommandRequest::new_hset("table1", "hello", "world".into());

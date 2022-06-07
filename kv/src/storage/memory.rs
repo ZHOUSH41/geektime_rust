@@ -20,7 +20,7 @@ impl MemTable {
             None => {
                 let entry = self.tables.entry(name.to_string()).or_default();
                 entry.downgrade()
-            },
+            }
         }
     }
 }
@@ -43,7 +43,7 @@ impl Storage for MemTable {
 
     fn del(&self, table: &str, key: &str) -> Result<Option<Value>, KvError> {
         let table = self.get_or_create_table(table);
-        Ok(table.remove(key).map(|(_k ,v)| v))
+        Ok(table.remove(key).map(|(_k, v)| v))
     }
 
     fn get_all(&self, table: &str) -> Result<Vec<Kvpair>, KvError> {

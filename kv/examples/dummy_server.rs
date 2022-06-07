@@ -16,14 +16,15 @@ async fn main() -> Result<()> {
         let (stream, addr) = listener.accept().await?;
         info!("Accepted connection from {}", addr);
         tokio::spawn(async move {
-            let mut stream =AsyncProstStream::<_, CommandRequest, CommandResponse, _>::from(stream).for_async();
+            let mut stream =
+                AsyncProstStream::<_, CommandRequest, CommandResponse, _>::from(stream).for_async();
             while let Some(Ok(msg)) = stream.next().await {
-                    info!("Got a new command {:?}", msg);
-                    // 创建一个404 response返回给客户端
-                   let mut resp = CommandResponse::default();
-                   resp.status = 404;
-                   resp.message = "Not Found".into();
-                   stream.send(resp).await.unwrap();
+                info!("Got a new command {:?}", msg);
+                // 创建一个404 response返回给客户端
+                let mut resp = CommandResponse::default();
+                resp.status = 404;
+                resp.message = "Not Found".into();
+                stream.send(resp).await.unwrap();
             }
             info!("Client {:?} disconnected", addr);
         });

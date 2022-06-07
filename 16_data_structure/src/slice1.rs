@@ -1,5 +1,5 @@
 fn main() {
-    let arr = vec![1, 2, 3, 4, 5];
+    let arr = [1, 2, 3, 4, 5];
     let vec = vec![1, 2, 3, 4, 5];
     let s1 = &arr[1..3];
     let s2 = &vec[1..3];
