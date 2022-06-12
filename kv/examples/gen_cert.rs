@@ -1,4 +1,3 @@
-
 use anyhow::Result;
 use certify::{generate_ca, generate_cert, load_ca, CertType, CA};
 use tokio::fs;

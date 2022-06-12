@@ -1,4 +1,3 @@
-
 use std::io::Cursor;
 use std::sync::Arc;
 
@@ -105,7 +104,7 @@ impl TlsServerAcceptor {
         config
             .set_single_cert(certs, key)
             .map_err(|_| KvError::CertifcateParseError("server", "cert"))?;
-        config.set_protocols(&[Vec::from(&ALPN_KV[..])]);
+        config.set_protocols(&[Vec::from(ALPN_KV)]);
 
         Ok(Self {
             inner: Arc::new(config),
@@ -189,7 +188,7 @@ mod tests {
         let client_identity = Some((CLIENT_CERT, CLIENT_KEY));
         let ca = Some(CA_CERT);
 
-        let addr = start_server(ca.clone()).await?;
+        let addr = start_server(ca).await?;
 
         let connector = TlsClientConnector::new("kvserver.acme.inc", client_identity, ca)?;
         let stream = TcpStream::connect(addr).await?;
